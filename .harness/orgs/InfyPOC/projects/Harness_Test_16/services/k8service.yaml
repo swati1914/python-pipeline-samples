@@ -1,0 +1,9 @@
+service:
+  name: k8-service
+  identifier: k8service
+  serviceDefinition:
+    type: Kubernetes
+    spec: {}
+  gitOpsEnabled: false
+  orgIdentifier: InfyPOC
+  projectIdentifier: Harness_Test_16
