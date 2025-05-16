@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: new-infra-k8
+  identifier: newinfrak8
+  orgIdentifier: InfyPOC
+  projectIdentifier: Harness_Test_16
+  environmentRef: staging
+  deploymentType: Kubernetes
+  type: KubernetesDirect
+  spec:
+    connectorRef: first_eks_cluster
+    namespace: harness-delegate-ng
+    releaseName: release-<+INFRA_KEY_SHORT_ID>
+  allowSimultaneousDeployments: true
