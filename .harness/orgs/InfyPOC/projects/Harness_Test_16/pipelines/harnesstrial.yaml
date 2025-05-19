@@ -1,0 +1,41 @@
+pipeline:
+  name: harness-trial
+  identifier: harnesstrial
+  projectIdentifier: Harness_Test_16
+  orgIdentifier: InfyPOC
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: pythonsample
+        build: <+input>
+  stages:
+    - stage:
+        name: CI
+        identifier: CI
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: first_eks_cluster
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushACR
+                  name: BuildAndPushACR_1
+                  identifier: BuildAndPushACR_1
+                  spec:
+                    connectorRef: <+input>
+                    repository: harnessacr.azurecr.io
+                    tags:
+                      - latest
